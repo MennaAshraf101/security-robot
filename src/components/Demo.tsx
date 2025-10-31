@@ -1,4 +1,4 @@
-import { Play, Camera, Image as ImageIcon } from 'lucide-react';
+import { Play, Camera } from 'lucide-react';
 
 export default function Demo() {
   const galleryImages = [
@@ -11,148 +11,145 @@ export default function Demo() {
   ];
 
   return (
-    <div className="min-h-screen pt-32 pb-20 bg-gradient-to-br from-[#F3F5F7] via-white to-[#F3F5F7]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] bg-clip-text text-transparent">
-            Demo & Gallery
-          </h1>
-          <p className="text-xl text-[#555555] max-w-3xl mx-auto">
-            Watch our robot in action and explore the development journey
-          </p>
-        </div>
-
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-16">
-          <div className="aspect-video bg-gradient-to-br from-[#1A1A1A] via-[#555555] to-[#1A1A1A] flex items-center justify-center relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A59]/10 to-[#FFB37A]/10" />
-
-            <div className="relative z-10 text-center">
-              <div className="mb-6 relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] opacity-20 rounded-full blur-3xl animate-pulse" />
-                <Camera className="relative w-32 h-32 text-white mx-auto" />
-              </div>
-
-              <button className="group/btn px-8 py-4 bg-gradient-to-r from-[#FF8B5E] to-[#FF6C9E] text-white rounded-xl font-semibold text-lg shadow-xl shadow-[#FF8B5E]/30 hover:shadow-2xl hover:shadow-[#FF8B5E]/40 transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 mx-auto">
-                <Play className="w-6 h-6 group-hover/btn:animate-pulse" />
-                <span>Watch Demo Video</span>
-              </button>
-
-              <p className="mt-6 text-white/80 text-lg">
-                See how our robot detects and responds to security threats in real-time
-              </p>
-            </div>
+    <div style={{ paddingTop: '80px' }}>
+      <section className="section-tech" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, white 100%)' }}>
+        <div className="container">
+          <div className="text-center mb-5">
+            <h1 className="display-4 fw-bold text-gradient mb-4">
+              Demo & Gallery
+            </h1>
+            <p className="lead" style={{ maxWidth: '700px', margin: '0 auto', color: 'var(--text-light)' }}>
+              Watch our robot in action and explore the development journey
+            </p>
           </div>
 
-          <div className="p-8 bg-gradient-to-r from-[#FF7A59] to-[#FFB37A]">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
-              <div className="text-center">
-                <div className="text-4xl font-bold mb-2">360°</div>
-                <div className="text-sm opacity-90">Vision Coverage</div>
+          <div className="card-tech p-0 overflow-hidden tech-shadow mb-5">
+            <div style={{ aspectRatio: '16 / 9', background: 'linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div className="mb-4" style={{ position: 'relative' }}>
+                  <div className="pulse-animation">
+                    <Camera style={{ width: '120px', height: '120px', color: 'white' }} />
+                  </div>
+                </div>
+
+                <button className="btn btn-tech-primary fw-bold" style={{ padding: '12px 30px', fontSize: '1.1rem' }}>
+                  <Play style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+                  Watch Demo Video
+                </button>
+
+                <p style={{ marginTop: '1.5rem', color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem' }}>
+                  See how our robot detects and responds to security threats in real-time
+                </p>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold mb-2">&lt;2s</div>
-                <div className="text-sm opacity-90">Alert Response Time</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold mb-2">95%</div>
-                <div className="text-sm opacity-90">Detection Accuracy</div>
+            </div>
+
+            <div style={{ background: 'linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-purple) 100%)', color: 'white', padding: '2rem' }}>
+              <div className="row text-center">
+                <div className="col-md-4">
+                  <h3 className="display-6 fw-bold">360°</h3>
+                  <p className="opacity-75 mb-0">Vision Coverage</p>
+                </div>
+                <div className="col-md-4">
+                  <h3 className="display-6 fw-bold">&lt;2s</h3>
+                  <p className="opacity-75 mb-0">Alert Response Time</p>
+                </div>
+                <div className="col-md-4">
+                  <h3 className="display-6 fw-bold">95%</h3>
+                  <p className="opacity-75 mb-0">Detection Accuracy</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <div className="mb-12">
-          <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] bg-clip-text text-transparent">
+      <section className="section-tech" style={{ background: 'white' }}>
+        <div className="container">
+          <h2 className="text-center fw-bold text-gradient mb-5" style={{ fontSize: '2.5rem' }}>
             Development Gallery
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="row g-4 mb-5">
             {galleryImages.map((item, idx) => (
-              <div
-                key={idx}
-                className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <div className="aspect-video bg-gradient-to-br from-[#F3F5F7] to-[#9E7BFF]/10 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A59]/5 to-[#FFB37A]/5 group-hover:opacity-100 opacity-0 transition-opacity" />
-                  <span className="text-8xl group-hover:scale-110 transition-transform">{item.emoji}</span>
-                </div>
+              <div className="col-md-6 col-lg-4" key={idx}>
+                <div className="card-tech overflow-hidden tech-shadow-hover h-100">
+                  <div style={{ aspectRatio: '1', background: 'linear-gradient(135deg, var(--bg-light) 0%, var(--accent-purple)/10 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', position: 'relative', overflow: 'hidden' }}>
+                    <div style={{ transition: 'transform 0.3s ease', fontSize: '4rem' }} className="glow-effect">
+                      {item.emoji}
+                    </div>
+                  </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">{item.title}</h3>
-                  <p className="text-[#555555]">{item.description}</p>
-                </div>
-
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ImageIcon className="w-5 h-5 text-[#FF7A59]" />
+                  <div className="p-4">
+                    <h5 className="fw-bold mb-2">{item.title}</h5>
+                    <p className="mb-0" style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4">Key Features Demonstrated</h3>
-            <ul className="space-y-3">
-              {[
-                'Autonomous navigation and patrol',
-                'Real-time threat detection',
-                'HD video streaming',
-                'Instant alert notifications',
-                'Night vision capability',
-                'Remote control interface',
-              ].map((feature, idx) => (
-                <li key={idx} className="flex items-center space-x-3 text-[#555555]">
-                  <span className="w-2 h-2 bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] rounded-full" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+      <section className="section-tech" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, white 100%)' }}>
+        <div className="container">
+          <div className="row g-4">
+            <div className="col-lg-6">
+              <div className="card-tech p-4 h-100 tech-shadow">
+                <h4 className="fw-bold mb-4">Key Features Demonstrated</h4>
+                <ul className="list-unstyled">
+                  {[
+                    'Autonomous navigation and patrol',
+                    'Real-time threat detection',
+                    'HD video streaming',
+                    'Instant alert notifications',
+                    'Night vision capability',
+                    'Remote control interface',
+                  ].map((feature, idx) => (
+                    <li key={idx} className="mb-3 d-flex gap-2 align-items-start">
+                      <span style={{ width: '6px', height: '6px', background: 'linear-gradient(135deg, var(--primary-medium) 0%, var(--accent-bright) 100%)', borderRadius: '50%', marginTop: '8px', flexShrink: 0 }} />
+                      <span style={{ color: 'var(--text-light)' }}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-          <div className="bg-gradient-to-br from-[#9E7BFF] to-[#6F42C1] rounded-2xl shadow-xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Test Results</h3>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span>Motion Detection</span>
-                  <span className="font-bold">98%</span>
-                </div>
-                <div className="h-3 bg-white/20 rounded-full overflow-hidden">
-                  <div className="h-full bg-white rounded-full" style={{ width: '98%' }} />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span>Fire Detection</span>
-                  <span className="font-bold">95%</span>
-                </div>
-                <div className="h-3 bg-white/20 rounded-full overflow-hidden">
-                  <div className="h-full bg-white rounded-full" style={{ width: '95%' }} />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span>Weapon Recognition</span>
-                  <span className="font-bold">92%</span>
-                </div>
-                <div className="h-3 bg-white/20 rounded-full overflow-hidden">
-                  <div className="h-full bg-white rounded-full" style={{ width: '92%' }} />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span>System Uptime</span>
-                  <span className="font-bold">99.9%</span>
-                </div>
-                <div className="h-3 bg-white/20 rounded-full overflow-hidden">
-                  <div className="h-full bg-white rounded-full" style={{ width: '99.9%' }} />
+            <div className="col-lg-6">
+              <div className="card-tech p-4 h-100 tech-shadow" style={{ background: 'linear-gradient(135deg, var(--secondary-purple) 0%, var(--accent-purple) 100%)', color: 'white', border: 'none' }}>
+                <h4 className="fw-bold mb-4">Test Results</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                  {[
+                    { label: 'Motion Detection', percent: 98 },
+                    { label: 'Fire Detection', percent: 95 },
+                    { label: 'Weapon Recognition', percent: 92 },
+                    { label: 'System Uptime', percent: 99.9 },
+                  ].map((test, idx) => (
+                    <div key={idx}>
+                      <div className="d-flex justify-content-between mb-2">
+                        <span>{test.label}</span>
+                        <span className="fw-bold">{test.percent}%</span>
+                      </div>
+                      <div style={{ height: '12px', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', overflow: 'hidden' }}>
+                        <div
+                          style={{
+                            height: '100%',
+                            background: 'white',
+                            borderRadius: '10px',
+                            width: `${test.percent}%`,
+                            transition: 'width 0.6s ease',
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

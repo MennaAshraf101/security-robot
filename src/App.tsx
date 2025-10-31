@@ -93,7 +93,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F5F7]">
+    <div style={{ minHeight: '100vh', background: 'var(--bg-light)' }}>
       <Navbar
         currentPage={currentPage}
         onNavigate={setCurrentPage}

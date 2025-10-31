@@ -1,4 +1,4 @@
-import { Linkedin, Github, User, Cpu, Palette } from 'lucide-react';
+import { Linkedin, Github, Cpu, User, Palette } from 'lucide-react';
 import { TeamMember } from '../types';
 
 export default function Team() {
@@ -33,114 +33,150 @@ export default function Team() {
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-20 bg-gradient-to-br from-[#F3F5F7] via-white to-[#F3F5F7]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] bg-clip-text text-transparent">
-            Meet Our Team
-          </h1>
-          <p className="text-xl text-[#555555] max-w-3xl mx-auto">
-            The brilliant minds behind the Smart Security Robot project
-          </p>
-        </div>
+    <div style={{ paddingTop: '80px' }}>
+      <section className="section-tech" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, white 100%)' }}>
+        <div className="container">
+          <div className="text-center mb-5">
+            <h1 className="display-4 fw-bold text-gradient mb-4">
+              Meet Our Team
+            </h1>
+            <p className="lead" style={{ maxWidth: '700px', margin: '0 auto', color: 'var(--text-light)' }}>
+              The brilliant minds behind the Smart Security Robot project
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {teamMembers.map((member, idx) => {
-            const RoleIcon = roleIcons[member.role];
-            return (
-              <div
-                key={idx}
-                className="group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A59]/10 to-[#FFB37A]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                <div className="relative p-8">
-                  <div className="mb-6 relative">
-                    <div className="w-32 h-32 mx-auto bg-gradient-to-br from-[#F3F5F7] to-[#9E7BFF]/10 rounded-full flex items-center justify-center text-6xl group-hover:scale-110 transition-transform">
-                      {member.image}
+          <div className="row g-4 mb-5">
+            {teamMembers.map((member, idx) => {
+              const RoleIcon = roleIcons[member.role];
+              return (
+                <div className="col-md-6 col-lg-4" key={idx}>
+                  <div className="card-tech p-4 text-center h-100 tech-shadow-hover">
+                    <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
+                      <div style={{ width: '120px', height: '120px', margin: '0 auto', background: 'linear-gradient(135deg, var(--bg-light) 0%, var(--accent-purple)/10 100%)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', marginBottom: '1rem' }}>
+                        {member.image}
+                      </div>
+                      <div style={{ position: 'absolute', bottom: '0', left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(135deg, var(--primary-medium) 0%, var(--accent-bright) 100%)', padding: '0.6rem', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <RoleIcon style={{ width: '18px', height: '18px', color: 'white' }} />
+                      </div>
                     </div>
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FF8B5E] to-[#FF6C9E] text-white p-2 rounded-full">
-                      <RoleIcon className="w-5 h-5" />
+
+                    <h4 className="fw-bold mb-2" style={{ color: 'var(--text-dark)' }}>
+                      {member.name}
+                    </h4>
+
+                    <p className="mb-4 fw-500" style={{ color: 'var(--text-light)' }}>
+                      {member.role}
+                    </p>
+
+                    <div className="d-flex justify-content-center gap-3">
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-sm"
+                          style={{
+                            background: 'var(--bg-light)',
+                            color: 'var(--primary-medium)',
+                            border: 'none',
+                            transition: 'all 0.3s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'linear-gradient(135deg, var(--primary-medium) 0%, var(--accent-bright) 100%)';
+                            e.currentTarget.style.color = 'white';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'var(--bg-light)';
+                            e.currentTarget.style.color = 'var(--primary-medium)';
+                          }}
+                        >
+                          <Linkedin style={{ width: '18px', height: '18px' }} />
+                        </a>
+                      )}
+                      {member.github && (
+                        <a
+                          href={member.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-sm"
+                          style={{
+                            background: 'var(--bg-light)',
+                            color: 'var(--primary-medium)',
+                            border: 'none',
+                            transition: 'all 0.3s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'linear-gradient(135deg, var(--primary-medium) 0%, var(--accent-bright) 100%)';
+                            e.currentTarget.style.color = 'white';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'var(--bg-light)';
+                            e.currentTarget.style.color = 'var(--primary-medium)';
+                          }}
+                        >
+                          <Github style={{ width: '18px', height: '18px' }} />
+                        </a>
+                      )}
                     </div>
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-[#1A1A1A] text-center mb-2">
-                    {member.name}
-                  </h3>
-
-                  <p className="text-[#555555] text-center mb-6 font-medium">
-                    {member.role}
-                  </p>
-
-                  <div className="flex justify-center space-x-4">
-                    {member.linkedin && (
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 bg-[#F3F5F7] rounded-lg hover:bg-gradient-to-r hover:from-[#FF8B5E] hover:to-[#FF6C9E] hover:text-white transition-all duration-300 transform hover:scale-110"
-                      >
-                        <Linkedin className="w-5 h-5" />
-                      </a>
-                    )}
-                    {member.github && (
-                      <a
-                        href={member.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 bg-[#F3F5F7] rounded-lg hover:bg-gradient-to-r hover:from-[#FF8B5E] hover:to-[#FF6C9E] hover:text-white transition-all duration-300 transform hover:scale-110"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
-                    )}
                   </div>
                 </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-tech" style={{ background: 'white' }}>
+        <div className="container">
+          <div className="row g-4 mb-5">
+            {[
+              { emoji: '⚙️', title: 'Hardware Engineering', desc: 'Designing and building the physical robot with sensors and motors' },
+              { emoji: '🤖', title: 'AI Development', desc: 'Creating intelligent algorithms for threat detection and response' },
+              { emoji: '🎨', title: 'Web Design', desc: 'Building intuitive interfaces for monitoring and control' },
+            ].map((item, idx) => (
+              <div className="col-md-4" key={idx}>
+                <div className="card-tech p-4 text-center text-white h-100 tech-shadow-hover" style={{ background: idx === 0 ? 'linear-gradient(135deg, var(--primary-medium) 0%, var(--accent-bright) 100%)' : idx === 1 ? 'linear-gradient(135deg, var(--secondary-purple) 0%, var(--accent-purple) 100%)' : 'linear-gradient(135deg, #5e548e 0%, #9d84b7 100%)' }}>
+                  <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{item.emoji}</div>
+                  <h5 className="fw-bold mb-3">{item.title}</h5>
+                  <p className="mb-0 opacity-90">{item.desc}</p>
+                </div>
               </div>
-            );
-          })}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-gradient-to-br from-[#FF7A59] to-[#FFB37A] rounded-2xl shadow-xl p-8 text-white text-center">
-            <div className="text-5xl font-bold mb-2">⚙️</div>
-            <h3 className="text-2xl font-bold mb-2">Hardware Engineering</h3>
-            <p className="opacity-90">Designing and building the physical robot with sensors and motors</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-[#9E7BFF] to-[#6F42C1] rounded-2xl shadow-xl p-8 text-white text-center">
-            <div className="text-5xl font-bold mb-2">🤖</div>
-            <h3 className="text-2xl font-bold mb-2">AI Development</h3>
-            <p className="opacity-90">Creating intelligent algorithms for threat detection and response</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-[#FF8B5E] to-[#FF6C9E] rounded-2xl shadow-xl p-8 text-white text-center">
-            <div className="text-5xl font-bold mb-2">🎨</div>
-            <h3 className="text-2xl font-bold mb-2">Web Design</h3>
-            <p className="opacity-90">Building intuitive interfaces for monitoring and control</p>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-3xl shadow-2xl p-12 text-center">
-          <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] bg-clip-text text-transparent">
-            Our Collaborative Approach
-          </h2>
-          <p className="text-xl text-[#555555] max-w-4xl mx-auto leading-relaxed mb-8">
-            Our diverse team brings together expertise in hardware, software, and design to create
-            a comprehensive security solution. Through close collaboration and iterative development,
-            we've built a robot that combines cutting-edge technology with practical usability.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {['Agile Development', 'Daily Standups', 'Code Reviews', 'Design Sprints', 'Testing & QA'].map((method, idx) => (
-              <span
-                key={idx}
-                className="px-6 py-3 bg-gradient-to-r from-[#F3F5F7] to-white rounded-full text-[#555555] font-medium shadow-md"
-              >
-                {method}
-              </span>
             ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="section-tech" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, white 100%)' }}>
+        <div className="container">
+          <div className="card-tech p-5 text-center tech-shadow">
+            <h2 className="fw-bold text-gradient mb-4" style={{ fontSize: '2.5rem' }}>
+              Our Collaborative Approach
+            </h2>
+            <p className="lead mb-5" style={{ maxWidth: '900px', margin: '0 auto', color: 'var(--text-light)' }}>
+              Our diverse team brings together expertise in hardware, software, and design to create a comprehensive security solution. Through close collaboration and iterative development, we've built a robot that combines cutting-edge technology with practical usability.
+            </p>
+            <div className="d-flex flex-wrap justify-content-center gap-3">
+              {['Agile Development', 'Daily Standups', 'Code Reviews', 'Design Sprints', 'Testing & QA'].map((method, idx) => (
+                <span
+                  key={idx}
+                  className="badge"
+                  style={{
+                    padding: '0.6rem 1.2rem',
+                    background: 'linear-gradient(135deg, var(--bg-light) 0%, white 100%)',
+                    color: 'var(--primary-medium)',
+                    fontSize: '0.95rem',
+                    fontWeight: 'bold',
+                    borderRadius: '20px',
+                    border: '2px solid var(--border-color)',
+                  }}
+                >
+                  {method}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

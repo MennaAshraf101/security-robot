@@ -34,104 +34,169 @@ export default function Navbar({ currentPage, onNavigate, alerts, onMarkAsSeen }
   const unseenAlerts = alerts.filter(a => !a.seen).slice(0, 5);
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div
-            className="flex items-center space-x-3 cursor-pointer group"
-            onClick={() => onNavigate('home')}
-          >
-            <div className="relative">
-              <Shield className="w-10 h-10 text-[#FF7A59] group-hover:text-[#FF6C9E] transition-colors" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] opacity-0 group-hover:opacity-20 rounded-full blur-xl transition-opacity" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] bg-clip-text text-transparent">
-              Smart Security Robot
-            </span>
-          </div>
+    <nav className={`navbar navbar-expand-lg fixed-top nav-tech ${scrolled ? 'scrolled' : ''}`} style={{ top: 0, zIndex: 1000 }}>
+      <div className="container-fluid">
+        <button
+          className="navbar-brand d-flex align-items-center gap-2"
+          onClick={() => onNavigate('home')}
+          style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
+        >
+          <Shield style={{ width: '28px', height: '28px', color: 'var(--primary-medium)' }} />
+          <span className="text-gradient fw-bold" style={{ fontSize: '1.2rem' }}>
+            Smart Security Robot
+          </span>
+        </button>
 
-          <div className="hidden md:flex items-center space-x-1">
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{ border: 'none', padding: 0 }}
+        >
+          {mobileMenuOpen ? (
+            <X style={{ width: '24px', height: '24px' }} />
+          ) : (
+            <Menu style={{ width: '24px', height: '24px' }} />
+          )}
+        </button>
+
+        <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`}>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => onNavigate(item.id)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                  currentPage === item.id
-                    ? 'bg-gradient-to-r from-[#FF8B5E] to-[#FF6C9E] text-white shadow-lg shadow-[#FF8B5E]/30'
-                    : 'text-[#555555] hover:text-[#1A1A1A] hover:bg-[#F3F5F7]'
-                }`}
-              >
-                {item.label}
-              </button>
+              <li className="nav-item" key={item.id}>
+                <button
+                  onClick={() => {
+                    onNavigate(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`nav-link ${currentPage === item.id ? 'active fw-bold' : ''}`}
+                  style={{
+                    color: currentPage === item.id ? 'white' : 'var(--text-light)',
+                    background: currentPage === item.id ? 'linear-gradient(135deg, var(--primary-medium) 0%, var(--accent-bright) 100%)' : 'transparent',
+                    borderRadius: '8px',
+                    padding: '0.5rem 1rem',
+                    border: 'none',
+                  }}
+                >
+                  {item.label}
+                </button>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <div className="flex items-center space-x-4">
-            <div className="relative">
+          <div className="d-flex align-items-center ms-3 gap-2">
+            <div style={{ position: 'relative' }}>
               <button
                 onClick={() => setNotificationsOpen(!notificationsOpen)}
-                className="relative p-2 rounded-lg hover:bg-[#F3F5F7] transition-colors"
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  padding: '0.5rem',
+                  cursor: 'pointer',
+                  position: 'relative',
+                }}
+                className="position-relative"
               >
-                <Bell className="w-6 h-6 text-[#555555]" />
+                <Bell style={{ width: '20px', height: '20px', color: 'var(--text-light)' }} />
                 {unseenAlerts.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-gradient-to-r from-[#FF8B5E] to-[#FF6C9E] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '-5px',
+                      right: '-5px',
+                      background: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)',
+                      color: 'white',
+                      fontSize: '0.7rem',
+                      fontWeight: 'bold',
+                      borderRadius: '50%',
+                      width: '20px',
+                      height: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
                     {unseenAlerts.length}
                   </span>
                 )}
               </button>
 
               {notificationsOpen && (
-                <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gradient-to-r from-[#FF7A59] to-[#FFB37A] p-4">
-                    <h3 className="text-white font-semibold text-lg">Notifications</h3>
+                <div
+                  style={{
+                    position: 'absolute',
+                    right: 0,
+                    top: '100%',
+                    width: '320px',
+                    background: 'white',
+                    borderRadius: '15px',
+                    marginTop: '10px',
+                    boxShadow: '0 10px 40px rgba(10, 36, 99, 0.2)',
+                    zIndex: 1001,
+                  }}
+                >
+                  <div style={{ background: 'linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-purple) 100%)', color: 'white', padding: '1rem', borderRadius: '15px 15px 0 0' }}>
+                    <h6 className="mb-0 fw-bold">Notifications</h6>
                   </div>
-                  <div className="max-h-96 overflow-y-auto">
+
+                  <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
                     {unseenAlerts.length === 0 ? (
-                      <div className="p-6 text-center text-[#555555]">
+                      <div style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--text-light)' }}>
                         No new notifications
                       </div>
                     ) : (
                       unseenAlerts.map((alert) => (
                         <div
                           key={alert.id}
-                          className="p-4 border-b border-gray-100 hover:bg-[#F3F5F7] cursor-pointer transition-colors"
                           onClick={() => {
                             onMarkAsSeen(alert.id);
                             setNotificationsOpen(false);
                           }}
+                          style={{
+                            padding: '1rem',
+                            borderBottom: '1px solid var(--border-color)',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                          }}
+                          className="notification-item"
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-light)')}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                         >
-                          <div className="flex items-start space-x-3">
-                            <span className={`text-2xl ${
-                              alert.type === 'fire' ? '🔥' :
-                              alert.type === 'weapon' ? '🔫' : '🚨'
-                            }`} />
-                            <div className="flex-1">
-                              <div className="flex items-center space-x-2 mb-1">
-                                <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                                  alert.priority === 'high' ? 'bg-red-100 text-red-700' :
-                                  alert.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                                  'bg-green-100 text-green-700'
-                                }`}>
+                          <div className="d-flex gap-2 align-items-start">
+                            <span style={{ fontSize: '1.5rem' }}>
+                              {alert.type === 'fire' ? '🔥' : alert.type === 'weapon' ? '🔫' : '🚨'}
+                            </span>
+                            <div style={{ flex: 1 }}>
+                              <div className="d-flex gap-2 align-items-center mb-2">
+                                <span className={`badge-tech ${alert.priority}`}>
                                   {alert.priority.toUpperCase()}
                                 </span>
-                                <span className="text-xs text-[#555555]">{alert.timestamp}</span>
+                                <small style={{ color: 'var(--text-light)' }}>{alert.timestamp}</small>
                               </div>
-                              <p className="text-sm text-[#1A1A1A]">{alert.message}</p>
+                              <p className="mb-0" style={{ fontSize: '0.9rem', color: 'var(--text-dark)' }}>
+                                {alert.message}
+                              </p>
                             </div>
                           </div>
                         </div>
                       ))
                     )}
                   </div>
-                  <div className="p-3 bg-[#F3F5F7] text-center">
+
+                  <div style={{ padding: '0.75rem', background: 'var(--bg-light)', textAlign: 'center', borderRadius: '0 0 15px 15px' }}>
                     <button
                       onClick={() => {
                         onNavigate('dashboard');
                         setNotificationsOpen(false);
                       }}
-                      className="text-sm font-medium text-[#FF7A59] hover:text-[#FF6C9E] transition-colors"
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: 'var(--primary-medium)',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                        fontSize: '0.9rem',
+                      }}
                     >
                       View All
                     </button>
@@ -139,43 +204,9 @@ export default function Navbar({ currentPage, onNavigate, alerts, onMarkAsSeen }
                 </div>
               )}
             </div>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-[#F3F5F7] transition-colors"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[#555555]" />
-              ) : (
-                <Menu className="w-6 h-6 text-[#555555]" />
-              )}
-            </button>
           </div>
         </div>
       </div>
-
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100">
-          <div className="px-4 py-4 space-y-2">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  onNavigate(item.id);
-                  setMobileMenuOpen(false);
-                }}
-                className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all ${
-                  currentPage === item.id
-                    ? 'bg-gradient-to-r from-[#FF8B5E] to-[#FF6C9E] text-white'
-                    : 'text-[#555555] hover:bg-[#F3F5F7]'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   );
 }
